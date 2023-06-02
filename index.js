@@ -8,15 +8,21 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport_local_strategy');
 
-
-const mongoStore = require('connect-mongo');
 const MongoStore = require('connect-mongo');
+const flash = require('connect-flash');
+const coustomMware = require('./config/middleware');
 
 // to parse the body request
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended: true}));
+
+app.use(express.static('./assets'));//using the static files
 
 // before all the router this middleware should be called to use layout featues 
 app.use(expressLayouts);
+
+// extract the style and scripts from subpages into the layouts
+app.set('layout extractStyles', true);
+app.set('layout extractScripts', true)
 
 
 // setup the view engine
@@ -48,7 +54,10 @@ app.use(passport.session());
 // sets the authenticated user in the response 
 app.use(passport.setAuthenticatedUser);
 
+// connect flash use
 
+app.use(flash());
+app.use(coustomMware.setFlash);
 
 
 // user express router

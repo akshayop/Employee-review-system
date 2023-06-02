@@ -31,7 +31,7 @@ module.exports.create = async (req, res) => {
     try {
 
         if(req.body.password != req.body.confirmPassword) {
-            console.log("Password Didn't matched. try Again...!");
+            req.flash('error',"Password Didn't matched. try Again...!");
             return res.redirect('back');
         }
 
@@ -42,22 +42,22 @@ module.exports.create = async (req, res) => {
             // create a new user
 
             await User.create(req.body);
-            console.log('successfully signed up');
+            req.flash('success','successfully signed up');
             return res.redirect('/users/sign-in');
         }
 
         else {
-            console.log('user already exists');
+            req.flash('warning','user already exists');
             return res.redirect('back')
         }
 
     }catch(err) {
-        console.log('error', err);
+        req.flash('error', err);
         return res.redirect('back');
     }
 }
 
 module.exports.createSession = (req, res) => {
-    console.log('Successfully signed in ');
+    req.flash('success','Successfully signed in ');
     return res.redirect('/');
 }
