@@ -1,47 +1,54 @@
+<link rel="stylesheet" href="/css/admin_dashboard.css">
 
-<div>
+<div id="main-container">
     <% if(locals.user && locals.user.isAdmin === true) {%>
         
-            <div>
-                <table>
-                    <caption>
-                        List of all Employees
-                    </caption>
+            
+        <table>
+            <caption>
+                List of all Employees
+            </caption>
 
-                    
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>email</th>
-                            <th>Admin</th>
-                            <th>Delete</th>
-                            <th>Edit</th>
-                            <th>Assign Review</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for(let i = 0; i < users.length; i++) { %>
+            
+            <thead>
+                <tr>
+                    <th scope="col" class="p-1">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">email</th>
+                    <th scope="col">Admin</th>
+                    <th scope="col">Delete</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Assign Review</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i = 0; i < users.length; i++) { %>
 
-                            <tr>
-                                <th><%= i + 1 %></th>
-                                <td> <%= users[i].name %></td>
-                                <td><%= users[i].email %></td>
-                                <td><%= users[i].isAdmin %></td>
-                                <td>
-                                    <a href="/admin/delete-employee/<%= users[i]._id %>">Delete</a>
-                                </td>
-                                <td>
-                                    <a href="/admin/edit-employee/<%= users[i]._id %>">Edit</a>
-                                </td>
-                                <td>
-                                    <a href="/admin/assign-review/<%= users[i]._id %>">Assign Review</a>
-                                </td>
-                            </tr>
-                        
-                        <% } %>
-                    </tbody>
-                </table>
-            </div>
+                    <tr>
+                        <th scope="row"><%= i + 1 %></th>
+                        <td> <%= users[i].name %></td>
+                        <td><%= users[i].email %></td>
+                        <td><%= users[i].isAdmin %></td>
+                        <td>
+                            <div class="btn delete-btn">
+                                <a href="/admin/delete-employee/<%= users[i]._id %>">Delete</a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn edit-btn">
+                                <a href="/admin/edit-employee/<%= users[i]._id %>">Edit</a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn assign-btn">
+                                <a href="/admin/assign-review/<%= users[i]._id %>">Assign Review</a>
+                            </div>
+                        </td>
+                    </tr>
+                
+                <% } %>
+            </tbody>
+        </table>
+            
     <% } %>
 </div>
