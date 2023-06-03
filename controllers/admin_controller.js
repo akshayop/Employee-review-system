@@ -44,6 +44,28 @@ module.exports.adminDashboard = async (req, res) => {
     }
 }
 
+// rendering edit employee page 
+
+module.exports.editEmployee = async (req, res) => {
+    try {
+        if(req.isAuthenticated()) {
+            if(req.user.isAdmin === true) {
+                const employee = await User.findById(req.params.id);
+
+                return res.render('edit_employee', {
+                    title: 'ERS | Edit Employee',
+                    employee: employee
+                });
+            }
+        }
+        req.flash('warning', 'please sign in....');
+        return res.redirect('/users/sign-in');
+    } catch (err) {
+        console.log('error', err);
+        return res.redirect('back');
+    }
+}
+
 
 // delete an user
 
