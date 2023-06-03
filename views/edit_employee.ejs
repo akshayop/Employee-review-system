@@ -1,3 +1,56 @@
-<h1>
-    edit page
-</h1>
+<link rel="stylesheet" href="/css/edit_employee.css">
+
+<% if(locals.user) { %>
+    <div id="update-container">
+
+        <form action="/admin/update-employee/<%=employee._id%>" method="post">
+
+            <div id="employee-container">
+
+                <h2>Update Employee Details</h2>
+
+                <!-- Name Input -->
+                <div class="input-box">
+                    <input type="text" name="name" value="<%= employee.name %>" required="required">
+                    <span>Name</span>
+                </div>
+
+                <!-- Email Input-->
+
+                <div class="input-box">
+                    <input type="email" name="email" value="<%= employee.email %>" required="required">
+                    <span>Email</span>
+                </div>
+
+                <!-- role -->
+
+                <div>
+                    <% if(employee.isAdmin == true) { %>
+
+                        <span>Current role:</span>
+                        <span>Admin</span>
+
+                    <% } 
+                    
+                    else {%>
+
+                        <span>Current role:</span>
+                        <span>Admin</span>
+
+                    <% } %>
+                </div>
+
+                <!-- role change -->
+
+                <select name="role" required>
+                    <option value="">Select role to Change</option>
+                    <option name="Admin" value="Admin">Admin</option>
+                    <option name="Employee" value="Employee">Employee</option>
+                </select>
+
+                <input type="submit" value="Update Details">
+
+            </div>
+        </form>
+    </div>
+<% } %>
