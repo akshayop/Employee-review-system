@@ -28,7 +28,13 @@
                         <th scope="row"><%= i + 1 %></th>
                         <td> <%= users[i].name %></td>
                         <td><%= users[i].email %></td>
-                        <td><%= users[i].isAdmin %></td>
+                        <td>
+                            <% if(users[i].isAdmin == true) { %>
+                                <span> Admin</span>
+                            <% } else {%>
+                                <span> Employee</span>
+                            <% } %>
+                        </td>
                         <td>
                             <div class="btn delete-btn">
                                 <a href="/admin/delete-employee/<%= users[i]._id %>">Delete</a>

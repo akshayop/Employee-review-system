@@ -66,6 +66,34 @@ module.exports.editEmployee = async (req, res) => {
     }
 }
 
+// Updating employee details
+
+module.exports.updateEmployee = async (req, res) => {
+    try {
+        const employee = await User.findById(req.params.id);
+
+        if(employee) {
+            // updating the data
+            employee.name = req.body.name;
+            if(req.body.role == 'Admin') {
+                employee.isAdmin = true
+            }
+            else {
+                employee.isAdmin = false;
+            }
+
+            employee.save();
+            req.flash('success', 'Employee details Updated....!');
+            return res.redirect('/admin/admin-dashboard');
+        }
+
+
+    } catch (err) {
+        console.log('error', err);
+        return res.redirect('back');
+    }
+}
+
 
 // delete an user
 
