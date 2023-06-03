@@ -43,3 +43,28 @@ module.exports.adminDashboard = async (req, res) => {
         return res.redirect('back')
     }
 }
+
+
+// delete an user
+
+module.exports.deleteEmployee = async (req, res) => {
+    try {
+
+        const user = await User.findById(req.params.id);
+        
+        // deleting the user
+        if(!user) {
+            req.flash('error', "Couldn't find Employee");
+            return res.redirect('back');
+        }
+
+        await User.findByIdAndDelete(req.params.id);
+        req.flash('success', 'Employee removed');
+        return res.redirect('back');
+
+    }catch (err) {
+        console.log('error', err);
+        return res.redirect('back');
+    }
+}
+
