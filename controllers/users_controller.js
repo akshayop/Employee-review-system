@@ -5,7 +5,16 @@ const User = require('../models/user');
 module.exports.signUp = (req, res) => {
 
     if(req.isAuthenticated()) {
-        return res.redirect('/');
+         // checking whether user is admin or not
+        // if user is admin
+        if(req.user.isAdmin === true) {
+            return res.redirect('/admin/admin-dashboard');
+        }
+
+        // if user is not admin
+        else {
+            return res.redirect('/');
+        }
     }
 
     return res.render('sign_up', {
@@ -17,8 +26,19 @@ module.exports.signUp = (req, res) => {
 
 module.exports.signIn = (req, res) => {
 
+    // checking whether user authenticated or not
     if(req.isAuthenticated()) {
-        return res.redirect('/');
+
+        // checking whether user is admin or not
+        // if user is admin
+        if(req.user.isAdmin === true) {
+            return res.redirect('/admin/admin-dashboard');
+        }
+
+        // if user is not admin
+        else {
+            return res.redirect('/');
+        }
     }
 
     return res.render('sign_in', {
@@ -41,7 +61,12 @@ module.exports.create = async (req, res) => {
         if(!user) {
             // create a new user
 
-            await User.create(req.body);
+            await User.create({
+                name: req.body.name,
+                email: req.body.email,
+                password: req.body.password,
+                isAdmin: false
+            });
             req.flash('success','successfully signed up');
             return res.redirect('/users/sign-in');
         }
@@ -59,5 +84,9 @@ module.exports.create = async (req, res) => {
 
 module.exports.createSession = (req, res) => {
     req.flash('success','Successfully signed in ');
+
+    if(req.user.isAdmin === true) {
+        return res.redirect('/admin/admin-dashboard');
+    }
     return res.redirect('/');
 }
