@@ -1,3 +1,47 @@
-<h1>
-    admin dashboard
-</h1>
+
+<div>
+    <% if(locals.user && locals.user.isAdmin === true) {%>
+        
+            <div>
+                <table>
+                    <caption>
+                        List of all Employees
+                    </caption>
+
+                    
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>email</th>
+                            <th>Admin</th>
+                            <th>Delete</th>
+                            <th>Edit</th>
+                            <th>Assign Review</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(let i = 0; i < users.length; i++) { %>
+
+                            <tr>
+                                <th><%= i + 1 %></th>
+                                <td> <%= users[i].name %></td>
+                                <td><%= users[i].email %></td>
+                                <td><%= users[i].isAdmin %></td>
+                                <td>
+                                    <a href="/admin/delete-employee/<%= users[i]._id %>">Delete</a>
+                                </td>
+                                <td>
+                                    <a href="/admin/edit-employee/<%= users[i]._id %>">Edit</a>
+                                </td>
+                                <td>
+                                    <a href="/admin/assign-review/<%= users[i]._id %>">Assign Review</a>
+                                </td>
+                            </tr>
+                        
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+    <% } %>
+</div>

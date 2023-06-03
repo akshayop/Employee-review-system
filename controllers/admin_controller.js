@@ -19,9 +19,7 @@ module.exports.adminDashboard = async (req, res) => {
 
                 // filter currently logged in user
                 let filterdUser = users.filter(
-                    (user) => {
-                        user.email !== req.user.email;
-                    }
+                    (user) => user.email !== req.user.email
                 );
 
                 return res.render('admin_dashboard', {
