@@ -1,19 +1,19 @@
-
+<link rel="stylesheet" href="/css/add_review.css">
 
 <% if(locals.user && locals.user.isAdmin === true) {%>
 
-    <div>
-        <h1>Assign Review</h1>
+    <div id="review-container">
+        <h2>Assign Review</h2>
 
         <form action="/review/add-review/<%= users._id %>" method="post">
 
-            <div>
-                <div><%= user.name %></div>
+            <div class="input-box">
+                <input type="text" name="reviewer" value="<%= user.name %>" readonly>
                 <span>Reviewer</span>
             </div>
 
-            <p>next</p>
             <select name="recipient_email">
+                <option value="">Select Recipient</option>
                 <% for (recipient of users) { %>
 
                     <% if(recipient.email != user.email) { %>
