@@ -6,7 +6,7 @@ const homeController = require('../controllers/home_controller'); //importing ho
 router.get('/', homeController.home); //rendering the home page
 router.use('/users', require('./users')); //User routes
 router.use('/admin', require('./admin')); //admin routes
-router.use('/review', require('./review')); //review routes
+
 
 // exporting router
 module.exports = router;

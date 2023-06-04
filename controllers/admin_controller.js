@@ -69,6 +69,85 @@ module.exports.editEmployee = async (req, res) => {
     }
 }
 
+
+// rendering the assign review page
+module.exports.assignReview = async (req, res) => {
+    try {
+
+        if(req.isAuthenticated()) {
+            
+            if(req.user.isAdmin === true) {
+
+                // populate all users
+                let users = await User.find({});
+
+                return res.render('add_review', {
+                    title: 'ERS | Add Review',
+                    users: users
+                });
+            } 
+            
+            else {
+                return res.redirect('back');
+            }
+        } 
+        else {
+            return res.redirect('/users/sign-in');
+        }
+
+    } catch (err) {
+        console.log('error', err);
+        return res.redirect('back')
+    }
+}
+
+module.exports.addReview = async (req, res) => {
+
+    try {
+
+        if(req.isAuthenticated()) {
+
+           
+            const reviwer = await User.findById(req.params.id);
+            const recipient = await User.findById(req.body.recipient);
+
+            if(reviwer.isAdmin === false) {
+                req.flash('error', 'Your not Authorized');
+                return res.redirect('/users/sign-in');
+            }
+
+            // checking if review alredy assigned or not
+            const alreadyAssigned = reviwer.userToReview.filter(
+                (userId) => userId == recipient.id
+            );
+
+            // if found, prevent from assigning duplicate review
+
+            if(alreadyAssigned.length > 0) {
+                req.flash('error', 'Review already assigned...!');
+                return res.redirect('back');
+
+            }
+
+            await reviwer.updateOne({
+                $push: {userToReview: recipient}
+            });
+
+            req.flash('success', 'review assigned successfully');
+            return res.redirect('back');
+
+        } else {
+            req.flash('error', 'please, Sign in Again....!');
+            return res.redirect('/users/sign-in');
+        }
+
+    } catch (err) {
+        console.log('error', err);
+        return res.redirect('back');
+    }
+}
+
+
 // Updating employee details
 
 module.exports.updateEmployee = async (req, res) => {

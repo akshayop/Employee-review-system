@@ -22,7 +22,15 @@ const userSchema = new mongoose.Schema({
     isAdmin: {
         type: Boolean,
         required: true
-    }
+    },
+    userToReview: [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'User'
+    }],
+    reviewRecivedFrom: [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'User'
+    }]
 }, {
     timestamps: true
 });
