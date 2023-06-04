@@ -90,3 +90,16 @@ module.exports.createSession = (req, res) => {
     }
     return res.redirect('/');
 }
+
+
+// destroying the sessions from the db
+
+module.exports.destroySession = (req, res, next) => {
+    req.logout( (err) => {
+        if(err)  {
+            return next(err)
+        }
+        req.flash('success', 'You have logged out!');
+        return res.redirect('/users/sign-in');
+    }); 
+}

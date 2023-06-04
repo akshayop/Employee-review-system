@@ -44,6 +44,20 @@ module.exports.adminDashboard = async (req, res) => {
     }
 }
 
+// render add employee page
+
+module.exports.addEmployee = (req, res) => {
+    if(req.isAuthenticated()) {
+        if(req.user.isAdmin === true) {
+            return res.render('add_employee', {
+                title: 'ERS | Add Employee'
+            })
+        }
+    }
+
+    return res.redirect('/users/sign-in')
+}
+
 // rendering edit employee page 
 
 module.exports.editEmployee = async (req, res) => {
