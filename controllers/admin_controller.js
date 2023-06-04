@@ -57,6 +57,9 @@ module.exports.editEmployee = async (req, res) => {
                     employee: employee
                 });
             }
+            else {
+                return res.redirect('back');
+            }
         }
         req.flash('warning', 'please sign in....');
         return res.redirect('/users/sign-in');
@@ -86,6 +89,8 @@ module.exports.updateEmployee = async (req, res) => {
             req.flash('success', 'Employee details Updated....!');
             return res.redirect('/admin/admin-dashboard');
         }
+
+        req.flash('error', "Employee doesn't exists.....!")
 
 
     } catch (err) {

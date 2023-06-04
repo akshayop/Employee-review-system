@@ -39,7 +39,7 @@
 }
 #main-container table tbody tr .delete-btn:hover {
   transform: scale(1.2);
-  background-color: f44336;
+  background-color: #f44336;
   cursor: pointer;
 }
 #main-container table tbody tr .edit-btn {
