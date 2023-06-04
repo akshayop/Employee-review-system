@@ -1,1 +1,51 @@
-<h3>header</h3>
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header>
+    <div id="logo-name">
+        Employee Review System
+    </div>
+
+    <ul>
+
+        <% if(locals.user) { %>
+            
+            <% if(locals.user.isAdmin) {%>
+
+                <li>
+                    <a href="/admin/add-employee">Add Employee</a>
+                </li>
+
+                <li>
+                    <a href="/review/assign-review">Assign Review</a>
+                </li>
+
+                <li>
+                    Hi, <%= user.name %>
+                </li>
+
+                <li>
+                    <a href="users/sign-out">Logout</a>
+                </li>
+
+            <% } else {%>
+                <li>
+                    Hi, <%= user.name %>
+                </li>
+
+                <li>
+                    <a href="users/sign-out">Logout</a>
+                </li>
+            <% } %>
+        <% } else {%>
+            <li>
+                <a href="/users/sign-in">Sign In</a>
+            </li>
+
+            <li>
+                <a href="/users/sign-up">Sign Up</a>
+            </li>
+        <% } %>
+
+    </ul>
+</header>
