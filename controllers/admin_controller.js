@@ -58,6 +58,39 @@ module.exports.addEmployee = (req, res) => {
     return res.redirect('/users/sign-in')
 }
 
+module.exports.createEmployee = async (req, res) => {
+    try {
+        if(req.body.password != req.body.confirmPassword) {
+            req.flash('error',"Password Didn't matched. try Again...!");
+            return res.redirect('back');
+        }
+
+        let user = await User.findOne({email: req.body.email}); //find the User using email
+
+        // if not found 
+        if(!user) {
+            // create a new user
+
+            await User.create({
+                name: req.body.name,
+                email: req.body.email,
+                password: req.body.password,
+                isAdmin: false
+            });
+            req.flash('success','successfully Added Employee');
+            return res.redirect('back');
+        }
+
+        else {
+            req.flash('warning','Employee already exists');
+            return res.redirect('back')
+        }
+    } catch (err) {
+        console.log('error', err);
+        return res.redirect('back');
+    }
+}
+
 // rendering edit employee page 
 
 module.exports.editEmployee = async (req, res) => {
