@@ -1,3 +1,32 @@
-<h1>
-    review page
-</h1>
+
+
+<% if(locals.user && locals.user.isAdmin === true) {%>
+
+    <div>
+        <h1>Assign Review</h1>
+
+        <form action="/review/add-review/<%= users._id %>" method="post">
+
+            <div>
+                <div><%= user.name %></div>
+                <span>Reviewer</span>
+            </div>
+
+            <p>next</p>
+            <select name="recipient_email">
+                <% for (recipient of users) { %>
+
+                    <% if(recipient.email != user.email) { %>
+                        <option value="<%= recipient.email %>">
+                            <%= recipient.name %>
+                        </option>
+                    <% } %>
+
+                <% } %>
+            </select>
+
+            <input type="submit" value="Assign Task">
+        </form>
+    </div>
+
+<% } %>
