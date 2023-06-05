@@ -59,7 +59,6 @@
 #main-container table tbody tr .assign-btn:hover {
   transform: scale(1.09);
   background-color: #4CAF50;
-  cursor: pointer;
 }
 #main-container table tbody tr th {
   padding-right: 1rem;

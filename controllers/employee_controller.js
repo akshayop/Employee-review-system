@@ -52,3 +52,8 @@ module.exports.employeeDashboard = async (req, res) => {
         return res.redirect('back');
     }
 }
+
+
+module.exports.redirectPage = (req, res) => {
+    return res.redirect('/users/sign-in');
+}

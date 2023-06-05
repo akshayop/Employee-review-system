@@ -1,50 +1,80 @@
+<link rel="stylesheet" href="/css/employee_dashboard.css">
+
 <% if(locals.user) {%>
 
-    <div>
+    <div id="review-container">
 
-        <div>
+        <div id="tasks-container">
             <h2>Assigned Reviews</h2>
 
-            <% for(review of userToReview) { %>
+            <ul>
+                <% for(review of userToReview) { %>
 
-                <form action="/review/create-review/<%= employee._id %>" method="post">
+                    
+                        <li>
+                            <div class="animate">
 
-                    <div>
-                        <label for="recipient_email"></label>
-                        <input type="email" id="recipient_email" name="recipient_email" value="<%= review.email %>" readonly>
-                    </div>
-
-                    <div>
-                        <label for="feedback">Feedback</label>
-                        <textarea name="feedback" id="feedback"></textarea>
-                    </div>
-
-                    <input type="submit" value="Submit">
-
-                </form>
-
-            <% } %>
+                                <form action="/review/create-review/<%= employee._id %>" method="post">
+        
+                                    <div id="mail">
+                                        <label for="recipient_email">Recipient:</label>
+                                        <input type="email" id="recipient_email" name="recipient_email" value="<%= review.email %>" readonly>
+                                    </div>
+                
+                                    <div id="feedback">
+                                        <label for="feedback">Feedback:</label>
+                                        <textarea name="feedback" id="feedback"></textarea>
+                                    </div>
+                
+                                    <input type="submit" value="Submit">
+                
+                                </form>
+                            </div>
+                            
+                        </li>
+                    
+    
+                <% } %>
+            </ul>
         </div>
 
-        <div>
+        <div id="feedback-container">
             <h2>Feedbacks</h2>
 
+
+
+            <ul>
+                <% for(review of reviewsFromOthers) { %>
+                    <div id="display-container">
+                        <li>
+                            <div id="reviewer">
+                                <span>Reviewer:</span>
+                                <%= review.reviewer.name %>
+                            </div>
             
-
-            <% for(review of reviewsFromOthers) { %>
-                <div>
-                    Reviewer:
-                    <span><%= review.reviewer.name %></span>
-                </div>
-
-                <div>
-                    Feedback:
-                    <span><%= review.review %></span>
-                </div>
-            <% } %>
+                            <div id="feed">
+                                <span>Feedback:</span>
+                                <div class="feed-made">
+                                    <%= review.review %>
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+                <% } %>
+            </ul>
         </div>
 
         
+    </div>
+
+<% } %>
+
+<% if(locals.user && userToReview.length == 0 && reviewsFromOthers == 0) { %>
+
+    <div class="marquee-container">
+        <p class="marquee">
+            
+        </p>
     </div>
 
 <% } %>

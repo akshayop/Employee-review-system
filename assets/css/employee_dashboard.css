@@ -1,0 +1,168 @@
+#review-container {
+  margin-left: 1.4rem;
+}
+#review-container #tasks-container ul {
+  display: flex;
+  margin: 1.4rem;
+  margin-left: 0;
+  padding: 0;
+  color: white;
+  height: 100%;
+  overflow: auto;
+  margin-bottom: 2%;
+}
+#review-container #tasks-container ul li {
+  list-style: none;
+  min-width: 21%;
+  max-width: 35%;
+  background: #161B22;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  border-radius: 0.7rem;
+}
+#review-container #tasks-container ul li label {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+#review-container #tasks-container ul li input {
+  height: 2rem;
+  font-size: 0.9rem;
+  padding-left: 0.4rem;
+  border-radius: 0.5rem;
+  letter-spacing: 0.07rem;
+  outline: none;
+}
+#review-container #tasks-container ul li #mail {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  padding-bottom: 0;
+}
+#review-container #tasks-container ul li #feedback {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+#review-container #tasks-container ul li #feedback textarea {
+  border-radius: 0.5rem;
+}
+#review-container #tasks-container ul li input[type=submit] {
+  font-size: 1rem;
+  width: 5rem;
+  height: 2rem;
+  margin: 0.5rem 0 1rem 11rem;
+  border: none;
+  color: white;
+  border-radius: 0.5rem;
+  background-color: #49c1a2;
+  transition: 0.3s;
+}
+#review-container #tasks-container ul li input[type=submit]:hover {
+  background-color: #4bb543;
+  cursor: pointer;
+}
+#review-container #tasks-container ul::-webkit-scrollbar {
+  width: 0.3rem;
+  height: 0.2rem;
+}
+#review-container #tasks-container ul::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px gray;
+  border-radius: 1rem;
+}
+#review-container #tasks-container ul::-webkit-scrollbar-thumb {
+  background: #161B22;
+  border-radius: 1rem;
+}
+#review-container #feedback-container ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1.4rem;
+  margin-left: 0;
+  padding: 0;
+  color: white;
+  margin-bottom: 2%;
+}
+#review-container #feedback-container ul #display-container li {
+  list-style: none;
+  width: 25rem;
+  height: 10rem;
+  background: #161B22;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  border-radius: 0.7rem;
+}
+#review-container #feedback-container ul #display-container li #reviewer {
+  padding: 0.3rem 0.7rem 0 0.7rem;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.09rem;
+}
+#review-container #feedback-container ul #display-container li #reviewer span {
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+  padding-right: 0.4rem;
+}
+#review-container #feedback-container ul #display-container li #feed span {
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+  padding: 0.7rem;
+  padding-bottom: 0.3rem;
+  padding-right: 0.4rem;
+  display: block;
+}
+#review-container #feedback-container ul #display-container li #feed .feed-made {
+  margin: 0.7rem;
+  margin-top: 0;
+  min-height: 5rem;
+  padding: 0 0.3rem;
+  max-height: 5.2rem;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.09rem;
+  border-radius: 0.8rem;
+  background-color: #1D2B3A;
+  overflow-x: auto;
+}
+#review-container #feedback-container ul #display-container li #feed .feed-made::-webkit-scrollbar {
+  width: 0.3rem;
+  height: 0.2rem;
+}
+#review-container #feedback-container ul #display-container li #feed .feed-made::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px gray;
+  border-radius: 1rem;
+}
+#review-container #feedback-container ul #display-container li #feed .feed-made::-webkit-scrollbar-thumb {
+  background: #161B22;
+  border-radius: 1rem;
+}
+
+.marquee-container {
+  display: flex;
+  align-items: center;
+  background: #161B21;
+  overflow: hidden;
+  height: 5rem;
+}
+.marquee-container .marquee {
+  font-size: 2rem;
+  line-height: 1.3;
+  font-family: sans-serif;
+  padding: 24px 0;
+  color: #fff;
+  white-space: nowrap;
+  animation: marquee 8s infinite linear;
+}
+.marquee-container .marquee:after {
+  content: "For testing purpose  :)  : -   mail: testing@gg.com    pass: 1";
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

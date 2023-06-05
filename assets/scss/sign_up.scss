@@ -3,7 +3,7 @@
 // main container
 .signup-box {
     width: 30rem;
-    height: 30rem;
+    height: 32rem;
     margin: auto;
     margin-top: 4rem;
     background-image: linear-gradient(65deg, #A9F1DF, #FFBBBB);
@@ -60,6 +60,22 @@
                 background-color: #4bb543;
                 transform: scale(1.2);
                 cursor: pointer;
+            }
+        }
+    }
+
+    p {
+        text-align: center;
+        // padding-top: 1rem;
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: lightslategrey;
+        
+        a{
+            color: blue;
+
+             &:hover {
+                color: rgba(0, 106, 255, 0.824);
             }
         }
     }

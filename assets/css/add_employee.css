@@ -3,15 +3,16 @@
 }
 #employee-container h2 {
   position: absolute;
-  left: 25.2rem;
+  left: 27.2rem;
+  top: 3rem;
 }
 #employee-container form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 40rem;
-  margin-left: 23.2rem;
-  margin-top: 2rem;
+  margin-top: -2rem;
+  margin-left: -2rem;
   min-height: 60vh;
   gap: 1rem;
   background-color: #1d2b3a;
