@@ -18,6 +18,7 @@
                     <th scope="col">Role</th>
                     <th scope="col" class="p-1">Delete</th>
                     <th scope="col" class="p-1">Edit</th>
+                    <th scope="col" class="p-1">Assign Review</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,6 +43,11 @@
                         <td>
                             <div class="btn edit-btn">
                                 <a href="/admin/edit-employee/<%= users[i]._id %>">Edit</a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn assign-btn">
+                                <a href="/admin/assign-review/<%= users[i]._id %>">Assign Review</a>
                             </div>
                         </td>
                     </tr>

@@ -13,7 +13,7 @@ module.exports.signUp = (req, res) => {
 
         // if user is not admin
         else {
-            return res.redirect('/');
+            return res.redirect(`/employee-dashboard/${req.user.id}`);
         }
     }
 
@@ -37,7 +37,7 @@ module.exports.signIn = (req, res) => {
 
         // if user is not admin
         else {
-            return res.redirect('/');
+            return res.redirect(`/employee-dashboard/${req.user.id}`);
         }
     }
 
@@ -88,7 +88,7 @@ module.exports.createSession = (req, res) => {
     if(req.user.isAdmin === true) {
         return res.redirect('/admin/admin-dashboard');
     }
-    return res.redirect('/');
+    return res.redirect(`/employee-dashboard/${req.user.id}`);
 }
 
 

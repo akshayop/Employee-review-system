@@ -5,19 +5,19 @@
     <div id="review-container">
         <h2>Assign Review</h2>
 
-        <form action="/admin/add-review/<%= user._id %>" method="post">
+        <form action="/admin/add-review/<%= reviewer._id %>" method="post">
 
             <div class="input-box">
-                <input type="text" name="reviewer" value="<%= user.name %>" readonly>
+                <input type="text" name="reviewer" value="<%= reviewer.name %>" readonly>
                 <span>Reviewer</span>
             </div>
 
-            <select name="recipient" required/>
+            <select name="recipient_email" required/>
                 <option value="">Select Recipient</option>
                 <% for (recipient of users) { %>
 
-                    <% if(recipient.email != user.email) { %>
-                        <option value="<%= recipient._id %>">
+                    <% if(recipient.email != reviewer.email) { %>
+                        <option value="<%= recipient.email %>">
                             <%= recipient.name %>
                         </option>
                     <% } %>

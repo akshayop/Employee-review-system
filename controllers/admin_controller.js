@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Review = require('../models/review');
 
 // rendering admin dashboard
 module.exports.adminDashboard = async (req, res) => {
@@ -30,7 +31,7 @@ module.exports.adminDashboard = async (req, res) => {
             
             // if user is not admin
             else {
-                return res.redirect('/');
+                return res.redirect(`/employee-dashboard/${req.user.id}`);
             }
         }
 
@@ -104,9 +105,6 @@ module.exports.editEmployee = async (req, res) => {
                     employee: employee
                 });
             }
-            else {
-                return res.redirect('back');
-            }
         }
         req.flash('warning', 'please sign in....');
         return res.redirect('/users/sign-in');
@@ -127,10 +125,12 @@ module.exports.assignReview = async (req, res) => {
 
                 // populate all users
                 let users = await User.find({});
+                let reviewer = await User.findById(req.params.id);
 
                 return res.render('add_review', {
                     title: 'ERS | Add Review',
-                    users: users
+                    users: users,
+                    reviewer: reviewer
                 });
             } 
             
@@ -156,12 +156,7 @@ module.exports.addReview = async (req, res) => {
 
            
             const reviwer = await User.findById(req.params.id);
-            const recipient = await User.findById(req.body.recipient);
-
-            if(reviwer.isAdmin === false) {
-                req.flash('error', 'Your not Authorized');
-                return res.redirect('/users/sign-in');
-            }
+            const recipient = await User.findOne({email: req.body.recipient_email});
 
             // checking if review alredy assigned or not
             const alreadyAssigned = reviwer.userToReview.filter(
@@ -238,6 +233,13 @@ module.exports.deleteEmployee = async (req, res) => {
             req.flash('error', "Couldn't find Employee");
             return res.redirect('back');
         }
+
+        // delete all the reviews in which this user is a recipient
+        await Review.deleteMany({ recipient: req.params.id });
+
+        // delete all the reviews in which this user is a reviewer
+        await Review.deleteMany({ reviewer: req.params.id });
+
 
         await User.findByIdAndDelete(req.params.id);
         req.flash('success', 'Employee removed');
