@@ -9,3 +9,7 @@ body {
 body main {
   min-height: 80vh;
 }
+body a {
+  color: #fff;
+  text-decoration: none;
+}

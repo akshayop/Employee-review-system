@@ -1,3 +1,24 @@
-<h1>
-    footer
-</h1>
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<footer>
+    <div id="social-icon">
+        <p>
+            Find us on  
+        </p>
+
+        <a href="https://github.com/akshayop" target="_blank">
+            <i class="fa-brands fa-github"></i>
+        </a>
+
+        
+    </div>
+
+    <div id="home">
+        <% if(locals.user && locals.user.idAdmin == true) {%>
+            <a href="/admin/admin-dashboard">Home</a>
+        <% } else { %>
+            <a href="/employee-dashboard">Home</a>
+        <% } %>
+    </div>
+</footer>
