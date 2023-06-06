@@ -42,7 +42,7 @@ app.use(session({
         maxAge: (1000 * 60 * 100)
     },
     store: MongoStore.create({
-        mongoUrl: process.env.DB_URI,
+        mongoUrl: 'mongodb://127.0.0.1:27017/ERS',
         autoRemove: 'disabled'
     })
 

@@ -4,7 +4,7 @@ require('dotenv').config();
 
 
 mongoose  
-    .connect(process.env.DB_URI)
+    .connect('mongodb://127.0.0.1:27017/ERS') 
     .then(()=>{console.log("db connected")})
     .catch((err)=>{console.log("db not connected..", err)})
 

@@ -15,7 +15,7 @@
     </div>
 
     <div id="home">
-        <% if(locals.user && locals.user.idAdmin == true) {%>
+        <% if(locals.user && locals.user.isAdmin === true) {%>
             <a href="/admin/admin-dashboard">Home</a>
         <% } else { %>
             <a href="/employee-dashboard">Home</a>

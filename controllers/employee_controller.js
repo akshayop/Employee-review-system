@@ -16,18 +16,12 @@ module.exports.employeeDashboard = async (req, res) => {
                 })
                 .populate('userToReview');
 
-
-            console.log(employee);
-            
-
             // extracting the assigned reviews 
             const userToReview = employee.userToReview;
 
 
             // extraxting review from other employees
             const reviewsFromOthers = employee.reviewsFromOthers;
-
-            console.log(reviewsFromOthers);
 
             // populate reviews given from others
             await Review.find().populate({

@@ -1,10 +1,11 @@
 #review-container {
     position: relative;
+    border: 1px solid #1d2b3a;
 
     h2 {
         position: absolute;
         left: 24.5rem;
-        top: -4rem;
+        // top: -4rem;
     }
     
     form {
@@ -16,6 +17,7 @@
         margin: auto;
         margin-top: 5rem;
         gap: 1rem;
+        
         
         .input-box {
             position: relative;
