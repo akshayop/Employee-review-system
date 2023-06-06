@@ -1,6 +1,7 @@
 const express = require('express'); // express.js 
 const app = express(); //creating express app instance
-const port = 8000;  //Port number where server localy hosts
+require('dotenv').config();
+const port = process.env.PORT || 3000;  //Port number where server localy hosts
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
 // used for session cookies 
@@ -41,7 +42,7 @@ app.use(session({
         maxAge: (1000 * 60 * 100)
     },
     store: MongoStore.create({
-        mongoUrl: 'mongodb://127.0.0.1:27017/ERS',
+        mongoUrl: process.env.DB_URI,
         autoRemove: 'disabled'
     })
 
